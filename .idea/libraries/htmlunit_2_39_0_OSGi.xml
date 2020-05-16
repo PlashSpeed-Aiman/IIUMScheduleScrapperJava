@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="htmlunit-2.39.0-OSGi">
+    <CLASSES>
+      <root url="jar://$APPLICATION_HOME_DIR$/lib/htmlunit-2.39.0-OSGi.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
