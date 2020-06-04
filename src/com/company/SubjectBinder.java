@@ -1,37 +1,28 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class SubjectBinder {
 
-    private String Code,Sect,Title,Chr,Day,Time,Venue,Lecturer1,Lecturer2;
-    String[] attributesList  = {Code, Sect, Title, Chr, Day, Time, Venue, Lecturer1, Lecturer2};
-    List<String[]> subject = new ArrayList<>();
-    public SubjectBinder(String one,String two,String three,String four,String five,String six,String seven,String eight,String nine){
-        Code = one;
-        Sect = two;
-        Title = three;
-        Chr = four;
-        Time = five;
-        Venue = six;
-        Day= seven;
-        Lecturer1 = eight;
-        Lecturer2 = nine;
+    ArrayList<String> DataBind = new ArrayList<>();
+    ArrayList<ArrayList<String>> GroupBind = new ArrayList<>();
 
+    public SubjectBinder() {
     }
 
-    public SubjectBinder(String code, String sect, String title) {
-            Code = code;
-            Sect = sect;
-            Title = title;
-            subject.add(attributesList);
-        System.out.println(Code+ " " + Sect + " " + Title + " ");
-        test();
-    }
-    public void test(){
-        System.out.println(subject);
+    public void DataBinder(String subjectTitle, String section, String subjectCode, String Lecture1, String Lecturer2, String Lecturer3) {
+        DataBind.add(subjectCode);
+        DataBind.add(subjectTitle);
+        DataBind.add(section);
+        DataBind.add(Lecture1);
+        DataBind.add(Lecturer2);
+        DataBind.add(Lecturer3);
+        GroupBind.add(DataBind);
+        System.out.println(DataBind);
+
+
+
 
     }
 }
-
