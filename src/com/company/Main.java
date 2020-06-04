@@ -93,37 +93,27 @@ public class Main {
         Document document = Jsoup.connect(url).userAgent("Google Chrome").timeout(6000).get();
         Elements pageNumberRough = document.select("body > table:nth-child(4) > tbody > tr:nth-child(1) > td > a:nth-last-child(1)");
         Element pageNumber;
-        try
-        {
+        try {
             pageNumber = pageNumberRough.get(0);
             System.out.println(pageNumber.text());
             pageNumberVal = pageNumber.text();
-            if (!(pageNumberVal.contains("NEXT")  || pageNumberVal == "next")) {
+            if (!(pageNumberVal.contains("NEXT") || pageNumberVal == "next")) {
                 System.out.println(pageNumberVal.concat("URL"));
             } else {
                 pageNumberRough = document.select("body > table:nth-child(4) > tbody > tr:nth-child(1) > td > a:nth-last-child(2)");
                 pageNumber = pageNumberRough.get(0);
                 pageNumberVal = pageNumber.getAllElements().text();
-                System.out.println(pageNumberVal + "2");
+                System.out.println("pages:" + pageNumberVal );
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             pageNumberVal = "0";
         }
-//        System.out.println(pageNumber.text());
-//        pageNumberVal = pageNumber.text();
-//        if (!(pageNumberVal.contains("NEXT")  || pageNumberVal == "next")) {
-//            System.out.println(pageNumberVal.concat("URL"));
-//        } else {
-//            pageNumberRough = document.select("body > table:nth-child(4) > tbody > tr:nth-child(1) > td > a:nth-last-child(2)");
-//            pageNumber = pageNumberRough.get(0);
-//            pageNumberVal = pageNumber.getAllElements().text();
-//            System.out.println(pageNumberVal + "2");
-//        }
 
         Elements subjectCodeRowRough = document.select("body > table:nth-child(4) > tbody > tr:nth-child(n)");//Select the table that contains the Data List
-//        System.out.println(subjectCodeRowRough.size());
+        System.out.println(subjectCodeRowRough.size());
         //For loop eliminates the parts that don't contain the data we need
-        for (int i = 3; i < subjectCodeRowRough.size() - 2; i++) {
+        int counter=1;
+        for (int i = 2; i < (subjectCodeRowRough.size() -1); i++) {
             //I put here so that it resets the ArrayList for every iteration
             List<String> DataBind = new ArrayList<>();
             Element test = subjectCodeRowRough
@@ -134,26 +124,26 @@ public class Main {
                     .first()
                     .text();
 
-//            System.out.println("Code: " + subjectCode);
-
+            System.out.println(counter + ":" +"Code: " + subjectCode);
+            counter++;
             subjectTitle = test
                     .select("tr:nth-of-type(n) >td:nth-of-type(3)")
                     .first()
                     .text();
-//            System.out.println("Title: " + subjectTitle);
+            System.out.println("Title: " + subjectTitle);
 
             section = test
                     .select("tr:nth-of-type(n) >td:nth-of-type(2)")
                     .first()
                     .text();
 
-//            System.out.println("Section:" + section);
+            System.out.println("Section:" + section);
 
             Lecture1 = test
                     .select(" tr:nth-child(n) > td:nth-child(5) > table > tbody > tr > td:nth-child(4)")
                     .first()
                     .text();
-//            System.out.println("Lecture 1: " + Lecture1);
+            System.out.println("Lecture 1: " + Lecture1);
 
             //check if the index value exist
 
@@ -173,33 +163,20 @@ public class Main {
                     .first()
                     .text();
 
-            System.out.println("Code: " + subjectCode + "\n" + "Title: " + subjectTitle + "\n" + "Section: " + section);
+//            System.out.println("Code: " + subjectCode + "\n" + "Title: " + subjectTitle + "\n" + "Section: " + section);
             //Unnecessary but it makes life easier
             String[] BundleList = {subjectTitle, section, subjectCode, Lecture1, Lecturer2, Lecturer3, pageNumberVal};
             System.out.println("Chr: " + CreditHour);
             for (String element : BundleList)
                 DataBind.addAll(Collections.singleton(element));
             GroupBind.add(DataBind);
-
             System.out.println(GroupBind);
-
-//            DataBind.clear();
-
-
-//            System.out.println(GroupBind);
-
-
-//              Binder(subjectTitle, section, subjectCode, Lecture1, Lecturer2,  Lecturer3);
 
         }
 
     }
 }
 
-//    public static void Binder(String subjectTitle, String section, String subjectCode, String Lecture1, String Lecturer2, String Lecturer3) {
-//        final SubjectBinder subjectBinder = new SubjectBinder();
-//        subjectBinder.DataBinder(subjectTitle, section, subjectCode, Lecture1, Lecturer2, Lecturer3);
-//    }
 
 
 
