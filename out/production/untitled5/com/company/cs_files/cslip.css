@@ -1,0 +1,14 @@
+BODY, TD {
+	font-family : "CG Times";
+	font-size : 8pt;
+}
+
+A {
+	text-decoration: none;
+	color: blue;
+}
+
+A:Hover {
+	text-decoration: underline;
+	color: red;
+}
